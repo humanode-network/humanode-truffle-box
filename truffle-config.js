@@ -12,7 +12,7 @@ const ferdiePrivate = "0d6dcaaef49272a5411896be8ad16c01c35d6f8c18873387b71fbc734
 const devPrivateKeys =
   [alicePrivate, bobPrivate, charliePrivate, davePrivate, evePrivate, ferdiePrivate];
 const humanodeRpcUrl = 'http://localhost:9933/';
-const humanodeChainId = 2020;
+const humanodeChainId = 5234;
 
 module.exports = {
   networks: {
