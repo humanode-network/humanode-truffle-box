@@ -2,7 +2,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const solidityCompilerVersion = '^0.7.0';
 
 const alicePrivate = "99b3c12287537e38c90a9219d4cb074a89a16e9cdb20bf85728ebd97c343e342";
-const bobPrivate = "8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b";
+const bobPrivate = "ddf0d48720b5478d0bb9775c7033f2774ca871b862d5d9ab630cc8916a8724fe";
 const charliePrivate = "0b6e18cafb6ed99687ec547bd28139cafdd2bffe70e6b688025de6b445aa5c5b";
 const davePrivate = "94c49300a58d576011096bcb006aa06f5a91b34b4383891e8029c21dc39fbb8b";
 const evePrivate = "4c42532034540267bf568198ccec4cb822a025da542861fcb146a5fab6433ff8";
