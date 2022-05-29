@@ -11,7 +11,7 @@ const ferdiePrivate = "0d6dcaaef49272a5411896be8ad16c01c35d6f8c18873387b71fbc734
 // Humanode Development Node config data
 const devPrivateKeys =
   [alicePrivate, bobPrivate, charliePrivate, davePrivate, evePrivate, ferdiePrivate];
-const humanodeRpcUrl = 'http://localhost:9933/';
+const humanodeRpcUrl = 'http://127.0.0.1:9933/';
 const humanodeChainId = 5234;
 
 module.exports = {
