@@ -37,7 +37,7 @@ contract('MyToken', accounts => {
     assert.equal(balanceBob, amount, 'Bob balance is wrong');
   });
 
-  describe('dev account transfers', () => {
+  describe('with other dev accounts involved', () => {
     // Make sure dev accounts have enough gas.
     beforeEach(async () => {
       const alice = accounts[0];
