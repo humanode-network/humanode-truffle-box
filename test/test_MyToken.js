@@ -37,41 +37,39 @@ contract('MyToken', accounts => {
     assert.equal(balanceBob, amount, 'Bob balance is wrong');
   });
 
-  // Set an allowance to an account, transfer from that account, check balances
-  it("should give accounts[1] authority to spend accounts[0]'s token", async () => {
-    // Make sure accounts have enough gas to complete transactions.
+  describe('dev account transfers', () => {
+    // Make sure dev accounts have enough gas.
     beforeEach(async () => {
       const alice = accounts[0];
       const bob = accounts[1];
       const charlie = accounts[2];
 
-      // TODO: This is ideally where we should make the transfer, however it's currently not
-      // working.
-      // await web3.eth.sendTransaction({from: alice, to: bob, value: 9000000000});
-      // await web3.eth.sendTransaction({from: alice, to: charlie, value: 9000000000});
+      const amount =  "100000000000000000";
+
+      await web3.eth.sendTransaction({from: alice, to: bob, value: amount});
+      await web3.eth.sendTransaction({from: alice, to: charlie, value: amount});
     });
-    // Prepare test data
-    const amountAllow = "10000000000000000000";
-    const amountTransfer = "1000000000000000000";
-    const alice = accounts[0];
-    const bob = accounts[1];
-    const charlie = accounts[2];
 
-    // Make sure accounts have enough gas to complete transactions.
-    // TODO: Move this to beforeEach.
-    await web3.eth.sendTransaction({from: alice, to: bob, value: 9000000000});
-    await web3.eth.sendTransaction({from: alice, to: charlie, value: 9000000000});
+    // Set an allowance to an account, transfer from that account, check balances
+    it("should give accounts[1] authority to spend accounts[0]'s token", async () => {
+      // Prepare test data
+      const amountAllow = "10000000000000000000";
+      const amountTransfer = "1000000000000000000";
+      const alice = accounts[0];
+      const bob = accounts[1];
+      const charlie = accounts[2];
 
-    // Approve Bob to spend from Alice
-    await token.approve(bob, amountAllow, { from: alice });
-    const allowance = await token.allowance.call(alice, bob);
-    assert.equal(allowance, amountAllow, 'allowance is wrong');
+      // Approve Bob to spend from Alice
+      await token.approve(bob, amountAllow, { from: alice });
+      const allowance = await token.allowance.call(alice, bob);
+      assert.equal(allowance, amountAllow, 'allowance is wrong');
 
-    // Transfer tokens and check new balances
-    await token.transferFrom(alice, charlie, amountTransfer, { from: bob });
-    const balanceBob = await token.balanceOf.call(bob);
-    assert.equal(balanceBob, 0, 'Bob balance is wrong');
-    const balanceCharlie = await token.balanceOf.call(charlie);
-    assert.equal(balanceCharlie, amountTransfer, 'Charlie balance is wrong');
-  })
+      // Transfer tokens and check new balances
+      await token.transferFrom(alice, charlie, amountTransfer, { from: bob });
+      const balanceBob = await token.balanceOf.call(bob);
+      assert.equal(balanceBob, 0, 'Bob balance is wrong');
+      const balanceCharlie = await token.balanceOf.call(charlie);
+      assert.equal(balanceCharlie, amountTransfer, 'Charlie balance is wrong');
+    })
+  });
 });
