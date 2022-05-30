@@ -39,12 +39,28 @@ contract('MyToken', accounts => {
 
   // Set an allowance to an account, transfer from that account, check balances
   it("should give accounts[1] authority to spend accounts[0]'s token", async () => {
+    // Make sure accounts have enough gas to complete transactions.
+    beforeEach(async () => {
+      const alice = accounts[0];
+      const bob = accounts[1];
+      const charlie = accounts[2];
+
+      // TODO: This is ideally where we should make the transfer, however it's currently not
+      // working.
+      // await web3.eth.sendTransaction({from: alice, to: bob, value: 9000000000});
+      // await web3.eth.sendTransaction({from: alice, to: charlie, value: 9000000000});
+    });
     // Prepare test data
     const amountAllow = "10000000000000000000";
     const amountTransfer = "1000000000000000000";
     const alice = accounts[0];
     const bob = accounts[1];
     const charlie = accounts[2];
+
+    // Make sure accounts have enough gas to complete transactions.
+    // TODO: Move this to beforeEach.
+    await web3.eth.sendTransaction({from: alice, to: bob, value: 9000000000});
+    await web3.eth.sendTransaction({from: alice, to: charlie, value: 9000000000});
 
     // Approve Bob to spend from Alice
     await token.approve(bob, amountAllow, { from: alice });
